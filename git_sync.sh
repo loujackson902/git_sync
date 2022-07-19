@@ -45,6 +45,12 @@ if
 fi
 
 if
+    [[ -n "$bin" ]]; then
+        sync_script="$bin/git_sync" &&
+                echo "Sync script set."
+fi
+
+if
     [ -d "$HOME/documents/org" ]; then
         org="$HOME/documents/org" &&
                 echo "Org set."
@@ -66,6 +72,7 @@ fi
 # Change into appropriate directories then run the sync function and send output to the log.
 cd $HOME; sync_dotfiles > $log;
     cd $bin; sync >> $log;
-        cd $cronjobs; sync >> $log;
-            cd $org; sync >> $log;
-                cd $www; sync >> $log
+        cd $sync_script; sync >> $log;
+            cd $cronjobs; sync >> $log;
+                cd $org; sync >> $log;
+                    cd $www; sync >> $log
