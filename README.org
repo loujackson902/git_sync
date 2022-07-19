@@ -1,0 +1,27 @@
+#+TITLE: README
+#+AUTHOR: Lou Jackson
+
+* TABLE OF CONTENTS :toc:
+- [[#about][ABOUT]]
+- [[#dependencies][DEPENDENCIES]]
+- [[#how-it-works][HOW IT WORKS]]
+
+* ABOUT
+This is a set of scripts that I have been working on for a while to
+teach myself how to use if statements and functions in Bash scripting.
+As I advance in proficiency with Bash, I would like to rework the contents of the script and
+make it more portable. I still have alot to learn, so what is here may not be the most efficient
+way to go about things.
+Later on in development the script will be rewritten so that it may "install" itself.
+Creating the appropriate files and directories if they are not found on the system.
+
+* DEPENDENCIES
+GNU Core Utils, Bash, and Git. That's it!
+
+* HOW IT WORKS
+There's really not much to it when you look at it.
+Firstly, a couple of functions are defined at the top of the page.
+Next, the shell will test for the required directories, then set them as variables.
+Lastly the shell will 'cd' from path to path, and call the appropriate sync function,
+until all the defined git repos have syncronized with the cloud.
+
