@@ -1,21 +1,5 @@
 #!/usr/bin/bash
 
-# Pull from origin, push to origin, push to lab.
-sync () {
-    git pull origin master && git push origin master && git push lab master
-}
-
-# Manipulate dotfiles
-sync_dotfiles () {
-    if
-        [ -f /usr/bin/git ]; then
-            dotfiles="/usr/bin/git --git-dir=$HOME/srv/git/dotfiles.git/ --work-tree=$HOME"
-    fi
-
-    $dotfiles push origin master; $dotfiles pull origin master; $dotfiles push lab master
-}
-
-
 # The following if statements check for required paths then sets variables accordingly.
 if
     [ -d "$HOME/srv/git" ] ; then
@@ -62,6 +46,26 @@ if
                 echo "www set."
 fi
 
+# Pull from origin, push to origin, push to lab.
+sync () {
+    git pull origin master && git push origin master && git push lab master
+}
+
+# Manipulate dotfiles in a git-bare directory.
+# Normally I will have created a Shell alias, for this command
+# However it must be defined here.
+# A video detailing how this method works can be found here:
+# https://youtu.be/tBoLDpTWVOM
+sync_dotfiles () {
+    if
+        [ -f /usr/bin/git ]; then
+            dotfiles="/usr/bin/git --git-dir=$git_dir/dotfiles.git/ --work-tree=$HOME"
+    fi
+
+    $dotfiles push origin master; $dotfiles pull origin master; $dotfiles push lab master
+}
+
+
 # This script no longer depends on git_keys.
 # Check for keys script, then source script.
 # if
@@ -70,6 +74,7 @@ fi
 # fi
 
 # Change into appropriate directories then run the sync function and send output to the log.
+#git --git-dir=$git_dir/git_sync.git/ --work-tree=$sync_script -C status;
 cd $HOME; sync_dotfiles > $log;
     cd $bin; sync >> $log;
         cd $sync_script; sync >> $log;
