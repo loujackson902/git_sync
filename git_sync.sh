@@ -48,7 +48,13 @@ fi
 
 # Pull from origin, push to origin, push to lab.
 sync () {
-    git pull origin master && git push origin master && git push lab master
+    if
+        git branch --show-current | grep master; then
+            git pull origin master && git push origin master && git push lab master
+    else
+            git pull origin test && git push origin test && git push lab test
+
+    fi
 }
 
 # Manipulate dotfiles in a git-bare directory.
@@ -81,3 +87,4 @@ cd $HOME; sync_dotfiles > $log;
             cd $cronjobs; sync >> $log;
                 cd $org; sync >> $log;
                     cd $www; sync >> $log
+                        cowsay "Sync Complete"
