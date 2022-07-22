@@ -88,5 +88,9 @@ cd $HOME; sync_dotfiles > $log;
                 cd $org; sync >> $log;
                     cd $www; sync >> $log
                         unset bin sync_script cronjobs org www log;
-                            echo "Cleared variables"
-                                cowsay "Sync Complete"
+                            echo "Cleared variables";
+                                if
+                                    which cowsay >> /dev/null; then
+                                        cowsay "Sync Complete"
+                                else echo "Sync Complete"
+                                fi
