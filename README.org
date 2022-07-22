@@ -4,7 +4,8 @@
 * TABLE OF CONTENTS :toc:
 - [[#about][ABOUT]]
 - [[#dependencies][DEPENDENCIES]]
-- [[#how-it-works][HOW IT WORKS]]
+  - [[#optional][OPTIONAL]]
+- [[#how-to-use][HOW TO USE]]
 
 * ABOUT
 This is a set of scripts that I have been working on for a while to automate syncronizing my personal
@@ -21,16 +22,33 @@ Maybe you will find it useful too!
 * DEPENDENCIES
 GNU Core Utils, Bash, Open-SSH, and Git. That's it!
 
-* HOW IT WORKS
-Begin by cloning the repo into your home directory, then add it to the "$PATH".
+** OPTIONAL
+Cowsay
+
+* HOW TO USE
+Begin by cloning the repo into your home directory, then add it to "$PATH".
 
 #+begin_src bash
 git clone https://github.com/loujackson902/git_sync.git $HOME
 #+end_src
 
-Make sure you generate some ssh keys, then add the path to those keys to your .ssh/config
-file. Next, a couple of functions are defined at the top of the page.
-After that, the shell will test for the required directories, then set them as variables.
-Lastly the shell will change directories from path to path, and call the appropriate sync function
-until all the defined git repos have syncronized with the cloud.
+Make sure to generate some ssh keys to use with Git if you haven't already, then add the path to those keys to your .ssh/config file.
 
+#+begin_src bash
+ssh-keygen -f $HOME/.ssh/NAME_OF_KEY
+
+echo "IdentityFile $HOME/.ssh/NAME_OF_KEY" >> $HOME/.ssh/config
+#+end_src
+
+Either source .profile, or restart your terminal.
+#+begin_src bash
+source $HOME/.profile
+#+end_src
+
+Lastly cd to the directory in which the script is being contained and execute.
+
+#+begin_src bash
+cd $HOME/git_sync;
+
+./git_sync.sh
+#+end_src
