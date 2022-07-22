@@ -1,17 +1,17 @@
 #!/usr/bin/bash
 
 # The following if statements check for required paths then sets variables accordingly.
+
 if
-    [ -d "$HOME/srv/git" ] ; then
-        git_dir="$HOME/srv/git" &&
-                echo "Git dir set in home."
-else
-        git_dir="/srv/git" &&
-                echo "Git dir set in root"
+    [[ ! -d "$HOME/srv/git" ]]; then
+        mkdir $HOME/srv/git
+elif
+        git_dir="$HOME/srv/git"; then
+        echo "\$git_dir set in home."
 fi
 
 if
-    [ -f "$HOME/.var/log/git_sync.log" ] ; then
+    [ -f "$HOME/.var/log/git_sync.log" ]; then
         log="$HOME/.var/log/git_sync.log" &&
                 echo "Logs set."
 fi
@@ -87,4 +87,6 @@ cd $HOME; sync_dotfiles > $log;
             cd $cronjobs; sync >> $log;
                 cd $org; sync >> $log;
                     cd $www; sync >> $log
-                        cowsay "Sync Complete"
+                        unset bin sync_script cronjobs org www log;
+                            echo "Cleared variables"
+                                cowsay "Sync Complete"
