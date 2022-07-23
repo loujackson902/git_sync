@@ -1,17 +1,33 @@
 #!/usr/bin/bash
 
-# The following if statements check for required paths then sets variables accordingly.
+# Pull from origin, push to origin, push to lab.
+sync () {
+    git pull origin master; git push origin master; git push lab master
+}
 
+# Manipulate dotfiles
+sync_dotfiles () {
+    if
+        [ -f /usr/bin/git ]; then
+            dotfiles="/usr/bin/git --git-dir=$HOME/srv/git/dotfiles.git/ --work-tree=$HOME"
+    fi
+
+    $dotfiles push origin master; $dotfiles pull origin master; $dotfiles push lab master
+}
+
+
+# The following if statements check for required paths then sets variables accordingly.
 if
-    [[ ! -d "$HOME/srv/git" ]]; then
-        mkdir $HOME/srv/git
-elif
-        git_dir="$HOME/srv/git"; then
-        echo "\$git_dir set in home."
+    [ -d "$HOME/srv/git" ] ; then
+        git_dir="$HOME/srv/git" &&
+                echo "Git dir set in home."
+else
+        git_dir="/srv/git" &&
+                echo "Git dir set in root"
 fi
 
 if
-    [ -f "$HOME/.var/log/git_sync.log" ]; then
+    [ -f "$HOME/.var/log/git_sync.log" ] ; then
         log="$HOME/.var/log/git_sync.log" &&
                 echo "Logs set."
 fi
@@ -29,12 +45,6 @@ if
 fi
 
 if
-    [[ -n "$bin" ]]; then
-        sync_script="$bin/git_sync" &&
-                echo "Sync script set."
-fi
-
-if
     [ -d "$HOME/documents/org" ]; then
         org="$HOME/documents/org" &&
                 echo "Org set."
@@ -46,32 +56,6 @@ if
                 echo "www set."
 fi
 
-# Pull from origin, push to origin, push to lab.
-sync () {
-    if
-        git branch --show-current | grep master; then
-            git pull origin master && git push origin master && git push lab master
-    else
-            git pull origin test && git push origin test && git push lab test
-
-    fi
-}
-
-# Manipulate dotfiles in a git-bare directory.
-# Normally I will have created a Shell alias, for this command
-# However it must be defined here.
-# A video detailing how this method works can be found here:
-# https://youtu.be/tBoLDpTWVOM
-sync_dotfiles () {
-    if
-        [ -f /usr/bin/git ]; then
-            dotfiles="/usr/bin/git --git-dir=$git_dir/dotfiles.git/ --work-tree=$HOME"
-    fi
-
-    $dotfiles push origin master; $dotfiles pull origin master; $dotfiles push lab master
-}
-
-
 # This script no longer depends on git_keys.
 # Check for keys script, then source script.
 # if
@@ -80,17 +64,8 @@ sync_dotfiles () {
 # fi
 
 # Change into appropriate directories then run the sync function and send output to the log.
-#git --git-dir=$git_dir/git_sync.git/ --work-tree=$sync_script -C status;
 cd $HOME; sync_dotfiles > $log;
     cd $bin; sync >> $log;
-        cd $sync_script; sync >> $log;
-            cd $cronjobs; sync >> $log;
-                cd $org; sync >> $log;
-                    cd $www; sync >> $log
-                        unset bin sync_script cronjobs org www log;
-                            echo "Cleared variables";
-                                if
-                                    which cowsay >> /dev/null; then
-                                        cowsay "Sync Complete"
-                                else echo "Sync Complete"
-                                fi
+        cd $cronjobs; sync >> $log;
+            cd $org; sync >> $log;
+                cd $www; sync >> $log
