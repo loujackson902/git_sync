@@ -81,13 +81,12 @@ sync_dotfiles () {
 
 # Change into appropriate directories then run the sync function and send output to the log.
 #git --git-dir=$git_dir/git_sync.git/ --work-tree=$sync_script -C status;
-sync_dotfiles > $log;
-    pushd $bin; sync >> $log;
-        pushd $sync_script; sync >> $log;
-            pushd $cronjobs; sync >> $log;
-                pushd $org; sync >> $log;
-                    pushd $www; sync >> $log
-                        cd $HOME
-                            unset bin sync_script cronjobs org www log;
-                                echo "Cleared variables"
-                                    cowsay "Sync Complete"
+cd $HOME; sync_dotfiles > $log;
+    cd $bin; sync >> $log;
+        cd $sync_script; sync >> $log;
+            cd $cronjobs; sync >> $log;
+                cd $org; sync >> $log;
+                    cd $www; sync >> $log
+                        unset bin sync_script cronjobs org www log;
+                            echo "Cleared variables"
+                                cowsay "Sync Complete"
