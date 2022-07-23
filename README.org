@@ -26,10 +26,17 @@ GNU Core Utils, Bash, Open-SSH, and Git. That's it!
 Cowsay
 
 * HOW TO USE
+
 Begin by cloning the repo into your home directory, then add it to "$PATH".
 
 #+begin_src bash
 git clone https://github.com/loujackson902/git_sync.git $HOME
+#+end_src
+
+Either source .profile, or restart your terminal.
+
+#+begin_src bash
+source $HOME/.profile
 #+end_src
 
 Make sure to generate some ssh keys to use with Git if you haven't already, then add the path to those keys to your .ssh/config file.
@@ -40,15 +47,10 @@ ssh-keygen -f $HOME/.ssh/NAME_OF_KEY
 echo "IdentityFile $HOME/.ssh/NAME_OF_KEY" >> $HOME/.ssh/config
 #+end_src
 
-Either source .profile, or restart your terminal.
-#+begin_src bash
-source $HOME/.profile
-#+end_src
+Make any changes to paths contained within the script to suit your system's configuration.
 
-Lastly cd to the directory in which the script is being contained and execute.
+Finally, execute the script.
 
 #+begin_src bash
-cd $HOME/git_sync;
-
-./git_sync.sh
+git_sync.sh
 #+end_src
