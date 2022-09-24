@@ -2,7 +2,11 @@
 
 # Pull from origin, push to origin, push to lab.
 sync () {
-    git pull origin master; git push origin master; git push lab master
+    for dirs in $() do
+    git -C $bin pull origin master;
+    git -C $bin push origin master;
+    git -C $bin push lab master;
+             done
 }
 
 # Manipulate dotfiles
