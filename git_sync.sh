@@ -51,6 +51,12 @@ if
 fi
 
 if
+    [[ -n "$bin" ]]; then
+        sync_script="$bin/git_sync" &&
+                echo "Git_Sync set."
+fi
+
+if
     [ -d "$HOME/documents/org" ]; then
         org="$HOME/documents/org" &&
                 echo "Org set."
