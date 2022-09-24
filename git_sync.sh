@@ -66,8 +66,8 @@ fi
 # fi
 
 # Change into appropriate directories then run the sync function and send output to the log.
-cd $HOME; sync_dotfiles > $log;
-    cd $bin; sync >> $log;
-        cd $cronjobs; sync >> $log;
-            cd $org; sync >> $log;
-                cd $www; sync >> $log
+# sync_dotfiles > $log;
+#     cd $bin; sync >> $log;
+#         cd $cronjobs; sync >> $log;
+#             cd $org; sync >> $log;
+#                 cd $www; sync >> $log
