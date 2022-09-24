@@ -93,3 +93,6 @@ fi
 #         cd $cronjobs; sync >> $log;
 #             cd $org; sync >> $log;
 #                 cd $www; sync >> $log
+
+dotfiles_sync
+sync
