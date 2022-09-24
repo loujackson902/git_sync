@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 # The following if statements check for required paths then sets variables accordingly.
+set_vars () {
 if
     [ -d "$HOME/srv/git" ] ; then
         git_dir="$HOME/srv/git" &&
@@ -46,37 +47,54 @@ if
                 echo "www set."
 fi
 
-# Pull from origin, push to origin, push to lab.
+master="$bin $cronjobs $sync_script $org $www"
+}
+
+# Sync repos
 sync () {
-    #for dirs in $(cat dirs.txt); do
-    git -C $bin pull origin master;
-    git -C $bin push origin master;
-    git -C $bin push lab master;
-    git -C $bin push vps master;
-    git -C $cronjobs pull origin master;
-    git -C $cronjobs push origin master;
-    git -C $cronjobs push lab master;
-    git -C $cronjobs push vps master;
-    git -C $sync_script pull origin test;
-    git -C $sync_script  push origin test;
-    git -C $sync_script  push lab test;
-    git -C $sync_script  push vps test;
-    git -C $org pull origin master;
-    git -C $org  push origin master;
-    git -C $org  push lab master;
-    git -C $org  push vps master;
-    git -C $www pull origin master;
-    git -C $www  push origin master;
-    git -C $www  push lab master;
-    git -C $www  push vps master;
-    #         done
+    set_vars
+for t in $( echo $sync_script );
+do
+    git -C $t pull origin test;
+    git -C $t push origin test;
+    git -C $t push lab test;
+    git -C $t push vps test;
+done
+
+for m in $( echo $master );
+do
+    git -C $m pull origin master;
+    git -C $m push origin master;
+    git -C $m push lab master;
+    git -C $m push vps master
+done
+#    git -C $bin pull origin master;
+#    git -C $bin push origin master;
+#    git -C $bin push lab master;
+#    git -C $bin push vps master;
+#    git -C $cronjobs pull origin master;
+#    git -C $cronjobs push origin master;
+#    git -C $cronjobs push lab master;
+#    git -C $cronjobs push vps master;
+#    git -C $sync_script pull origin test;
+#    git -C $sync_script  push origin test;
+#    git -C $sync_script  push lab test;
+#    git -C $sync_script  push vps test;
+#    git -C $org pull origin master;
+#    git -C $org  push origin master;
+#    git -C $org  push lab master;
+#    git -C $org  push vps master;
+#    git -C $www pull origin master;
+#    git -C $www  push origin master;
+#    git -C $www  push lab master;
+#    git -C $www  push vps master;
 }
 
 # Manipulate dotfiles
 sync_dotfiles () {
     if
         [ -f /usr/bin/git ]; then
-            dotfiles="/usr/bin/git --git-dir=$HOME/srv/git/dotfiles.git/ --work-tree=$HOME"
+            dotfiles="/usr/bin/git --git-dir=$git_dir/dotfiles.git/ --work-tree=$HOME"
     else
             echo "Application not found, please install git"
     fi
