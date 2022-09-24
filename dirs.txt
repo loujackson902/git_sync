@@ -1,5 +1,5 @@
-$bin
-$cronjobs
-$sync_script
-$org
-$www
+/home/benny/bin
+/home/benny/bin/cron
+/home/benny/bin/git_sync
+/home/benny/documents/org
+/home/benny/srv/git/uofc
