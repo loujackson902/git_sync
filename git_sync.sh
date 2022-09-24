@@ -2,11 +2,23 @@
 
 # Pull from origin, push to origin, push to lab.
 sync () {
-    for dirs in $() do
+    #for dirs in $(cat dirs.txt); do
     git -C $bin pull origin master;
     git -C $bin push origin master;
     git -C $bin push lab master;
-             done
+    git -C $cronjobs pull origin master;
+    git -C $cronjobs push origin master;
+    git -C $cronjobs push lab master;
+    git -C $sync_script pull origin master;
+    git -C $sync_script  push origin master;
+    git -C $sync_script  push lab master;
+    git -C $org pull origin master;
+    git -C $org  push origin master;
+    git -C $org  push lab master;
+    git -C $www pull origin master;
+    git -C $www  push origin master;
+    git -C $www  push lab master;
+    #         done
 }
 
 # Manipulate dotfiles
