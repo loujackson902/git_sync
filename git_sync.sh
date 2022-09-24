@@ -81,7 +81,10 @@ sync_dotfiles () {
             echo "Application not found, please install git"
     fi
 
-    $dotfiles push origin master; $dotfiles pull origin master; $dotfiles push lab master
+    $dotfiles push origin master;
+    $dotfiles pull origin master;
+    $dotfiles push lab master;
+    $dotfiles push vps master
 }
 
 
