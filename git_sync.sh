@@ -50,9 +50,25 @@ fi
 master="$bin $cronjobs $sync_script $org $www"
 }
 
+# Manipulate dotfiles
+sync_dotfiles () {
+    if
+        [ -f /usr/bin/git ]; then
+            dotfiles="/usr/bin/git --git-dir=$HOME/srv/git/dotfiles.git --work-tree=$HOME"
+    else
+            echo "Application not found, please install git"
+    fi
+
+    $dotfiles push origin master;
+    $dotfiles pull origin master;
+    $dotfiles push lab master;
+    $dotfiles push vps master
+}
+
 # Sync repos
 sync () {
     set_vars
+    sync_dotfiles
 for t in $( echo $sync_script );
 do
     git -C $t pull origin test;
@@ -90,22 +106,6 @@ done
 #    git -C $www  push vps master;
 }
 
-# Manipulate dotfiles
-sync_dotfiles () {
-    if
-        [ -f /usr/bin/git ]; then
-            dotfiles="/usr/bin/git --git-dir=$HOME/srv/git/dotfiles.git --work-tree=$HOME"
-    else
-            echo "Application not found, please install git"
-    fi
-
-    $dotfiles push origin master;
-    $dotfiles pull origin master;
-    $dotfiles push lab master;
-    $dotfiles push vps master
-}
-
-
 # This script no longer depends on git_keys.
 # Check for keys script, then source script.
 # if
@@ -120,5 +120,4 @@ sync_dotfiles () {
 #             cd $org; sync >> $log;
 #                 cd $www; sync >> $log
 
-sync_dotfiles;
 sync
