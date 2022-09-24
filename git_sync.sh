@@ -94,7 +94,7 @@ done
 sync_dotfiles () {
     if
         [ -f /usr/bin/git ]; then
-            dotfiles="/usr/bin/git --git-dir=$git_dir/dotfiles.git/ --work-tree=$HOME"
+            dotfiles="/usr/bin/git --git-dir=$HOME/srv/git/dotfiles.git --work-tree=$HOME"
     else
             echo "Application not found, please install git"
     fi
