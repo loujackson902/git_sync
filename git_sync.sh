@@ -54,7 +54,7 @@ master="$bin $cronjobs $sync_script $org $www"
 sync_dotfiles () {
     if
         [ -f /usr/bin/git ]; then
-            dotfiles="/usr/bin/git --git-dir=$HOME/srv/git/dotfiles.git --work-tree=$HOME"
+            dotfiles="/usr/bin/git --git-dir=$git_dir/dotfiles.git --work-tree=$HOME"
     else
             echo "Application not found, please install git"
     fi
@@ -74,7 +74,7 @@ do
     git -C $t pull origin test;
     git -C $t push origin test;
     git -C $t push lab test;
-    git -C $t push vps test;
+    git -C $t push vps test
 done
 
 for m in $( echo $master );
