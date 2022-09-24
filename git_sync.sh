@@ -30,7 +30,7 @@ fi
 
 if
     [[ -n "$bin" ]]; then
-        sync_script="$bin/git_sync/git_sync.sh" &&
+        sync_script="$bin/git_sync" &&
                 echo "Git_Sync set."
 fi
 
@@ -94,5 +94,5 @@ sync_dotfiles () {
 #             cd $org; sync >> $log;
 #                 cd $www; sync >> $log
 
-sync_dotfiles
+sync_dotfiles;
 sync
