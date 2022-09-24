@@ -1,4 +1,5 @@
 $bin
 $cronjobs
+$sync_script
 $org
 $www
