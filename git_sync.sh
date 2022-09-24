@@ -52,18 +52,23 @@ sync () {
     git -C $bin pull origin master;
     git -C $bin push origin master;
     git -C $bin push lab master;
+    git -C $bin push vps master;
     git -C $cronjobs pull origin master;
     git -C $cronjobs push origin master;
     git -C $cronjobs push lab master;
+    git -C $cronjobs push vps master;
     git -C $sync_script pull origin test;
     git -C $sync_script  push origin test;
     git -C $sync_script  push lab test;
+    git -C $sync_script  push vps test;
     git -C $org pull origin master;
     git -C $org  push origin master;
     git -C $org  push lab master;
+    git -C $org  push vps master;
     git -C $www pull origin master;
     git -C $www  push origin master;
     git -C $www  push lab master;
+    git -C $www  push vps master;
     #         done
 }
 
