@@ -55,9 +55,9 @@ sync () {
     git -C $cronjobs pull origin master;
     git -C $cronjobs push origin master;
     git -C $cronjobs push lab master;
-    git -C $sync_script pull origin master;
-    git -C $sync_script  push origin master;
-    git -C $sync_script  push lab master;
+    git -C $sync_script pull origin test;
+    git -C $sync_script  push origin test;
+    git -C $sync_script  push lab test;
     git -C $org pull origin master;
     git -C $org  push origin master;
     git -C $org  push lab master;
