@@ -47,8 +47,19 @@ if
                 echo "www set."
 fi
 
-test="$git_sync"
-master="$bin $cronjobs $sync_script $org $www"
+if
+    [[ -n $git_sync ]]; then
+        test="$git_sync"
+else
+        echo "$git_sync not found"
+fi
+
+if
+    [[ -n $bin ]] && [[ -n $cronjobs ]] && [[ -n $git_sync ]] && [[ -n $org ]] && [[ -n $www ]]; then
+        master="$bin $cronjobs $git_sync $org $www"
+else
+        echo "Variable not found"
+fi
 }
 
 # Manipulate dotfiles
