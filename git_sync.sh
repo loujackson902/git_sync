@@ -79,7 +79,7 @@ sync_dotfiles () {
 
 # Sync repos
 sync () {
-    set_vars
+    set_vars;
     sync_dotfiles
 for t in $( echo $test );
 do
@@ -96,5 +96,6 @@ do
     git -C $m push lab master;
     git -C $m push vps master
 done
+}
 
-sync > $log
+sync
