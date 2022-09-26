@@ -81,6 +81,7 @@ sync_dotfiles () {
 sync () {
     set_vars;
     sync_dotfiles
+
 for t in $( echo $test );
 do
     git -C $t pull origin test;
