@@ -56,7 +56,7 @@ fi
 
 if
     [[ -n $bin ]] && [[ -n $cronjobs ]] && [[ -n $git_sync ]] && [[ -n $org ]] && [[ -n $www ]]; then
-        master="$bin $cronjobs $git_sync $org $www"
+        master="$bin $cronjobs $org $www"
 else
         echo "Variable not found"
 fi
