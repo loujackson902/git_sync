@@ -69,7 +69,7 @@ sync_dotfiles () {
 sync () {
     set_vars
     sync_dotfiles
-for t in $( echo $sync_script );
+for t in $( echo $test );
 do
     git -C $t pull origin test;
     git -C $t push origin test;
@@ -85,4 +85,4 @@ do
     git -C $m push vps master
 done
 
-sync
+sync > $log
