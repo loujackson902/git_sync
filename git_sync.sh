@@ -84,40 +84,5 @@ do
     git -C $m push lab master;
     git -C $m push vps master
 done
-#    git -C $bin pull origin master;
-#    git -C $bin push origin master;
-#    git -C $bin push lab master;
-#    git -C $bin push vps master;
-#    git -C $cronjobs pull origin master;
-#    git -C $cronjobs push origin master;
-#    git -C $cronjobs push lab master;
-#    git -C $cronjobs push vps master;
-#    git -C $sync_script pull origin test;
-#    git -C $sync_script  push origin test;
-#    git -C $sync_script  push lab test;
-#    git -C $sync_script  push vps test;
-#    git -C $org pull origin master;
-#    git -C $org  push origin master;
-#    git -C $org  push lab master;
-#    git -C $org  push vps master;
-#    git -C $www pull origin master;
-#    git -C $www  push origin master;
-#    git -C $www  push lab master;
-#    git -C $www  push vps master;
-}
-
-# This script no longer depends on git_keys.
-# Check for keys script, then source script.
-# if
-#     [ -f "$bin/git_keys" ]; then
-#         source "$bin/git_keys"
-# fi
-
-# Change into appropriate directories then run the sync function and send output to the log.
-# sync_dotfiles > $log;
-#     cd $bin; sync >> $log;
-#         cd $cronjobs; sync >> $log;
-#             cd $org; sync >> $log;
-#                 cd $www; sync >> $log
 
 sync
