@@ -31,7 +31,7 @@ fi
 
 if
     [[ -n "$bin" ]]; then
-        sync_script="$bin/git_sync" &&
+        git_sync="$bin/git_sync" &&
                 echo "Git_Sync set."
 fi
 
@@ -47,6 +47,7 @@ if
                 echo "www set."
 fi
 
+test="$git_sync"
 master="$bin $cronjobs $sync_script $org $www"
 }
 
