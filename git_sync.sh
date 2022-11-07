@@ -3,8 +3,8 @@
 # The following if statements check for required paths then sets variables accordingly.
 set_vars () {
 if
-    [ -d "$HOME/srv/git" ] ; then
-        git_dir="$HOME/srv/git" &&
+    [ -d "$HOME/git" ] ; then
+        git_dir="$HOME/git" &&
                 echo "Git dir set in home."
 else
         git_dir="/srv/git" &&
@@ -44,7 +44,7 @@ fi
 if
     [[ -n "$git_dir" ]]; then
         www="$git_dir/uofc" &&
-                echo "www set."
+                echo "Website directory set."
 fi
 
 if
