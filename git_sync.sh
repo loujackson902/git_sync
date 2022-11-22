@@ -47,16 +47,16 @@ if
                 echo "Website directory set."
 fi
 
-if
-    [[ -n $git_sync ]]; then
-        test="$git_sync"
-else
-        echo "$git_sync not found"
-fi
+# if
+#     [[ -n $git_sync ]]; then
+#         test="$git_sync"
+# else
+#         echo "$git_sync not found"
+# fi
 
 if
     [[ -n $bin ]] && [[ -n $cronjobs ]] && [[ -n $git_sync ]] && [[ -n $org ]] && [[ -n $www ]]; then
-        master="$bin $cronjobs $org $www"
+        master="$bin $git_sync $cronjobs $org $www"
 else
         echo "Variable not found"
 fi
@@ -71,10 +71,10 @@ sync_dotfiles () {
             echo "Application not found, please install git"
     fi
 
-    $dotfiles push origin master;
-    $dotfiles pull origin master;
-    $dotfiles push lab master;
-    $dotfiles push vps master
+     $dotfiles push origin master;
+     $dotfiles pull origin master;
+     $dotfiles push lab master;
+     $dotfiles push vps master
 }
 
 # Sync repos
@@ -82,13 +82,13 @@ sync () {
     set_vars;
     sync_dotfiles
 
-for t in $( echo $test );
-do
-    git -C $t pull origin test;
-    git -C $t push origin test;
-    git -C $t push lab test;
-    git -C $t push vps test
-done
+# for t in $( echo $test );
+# do
+#     git -C $t pull origin test;
+#     git -C $t push origin test;
+#     git -C $t push lab test;
+#     git -C $t push vps test
+# done
 
 for m in $( echo $master );
 do
