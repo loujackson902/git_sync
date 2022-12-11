@@ -74,7 +74,8 @@ sync_dotfiles () {
      $dotfiles push origin master;
      $dotfiles pull origin master;
      $dotfiles push lab master;
-     $dotfiles push vps master
+     $dotfiles push local master
+ #    $dotfiles push vps master # toggle comment for personal git server
 }
 
 # Sync repos
@@ -95,7 +96,8 @@ do
     git -C $m pull origin master;
     git -C $m push origin master;
     git -C $m push lab master;
-    git -C $m push vps master
+    git -C $m push local master;
+#   git -C $m push vps master # toggle comment for personal git server
 done
 }
 
