@@ -1,15 +1,15 @@
 #+TITLE: README
 #+AUTHOR: Lou Jackson
+#+DESCRIPTION: README file for git_sync.sh
 
 * TABLE OF CONTENTS :toc:
 - [[#about][ABOUT]]
 - [[#dependencies][DEPENDENCIES]]
-  - [[#optional][OPTIONAL]]
 - [[#how-to-use][HOW TO USE]]
 
 * ABOUT
 This is a set of scripts that I have been working on for a while to automate syncronizing my personal
-git repos, and teach myself how to write conditionals and functions in Bash scripting.
+git repos, and teach myself how to write conditionals, loops, and functions in Bash.
 As I advance in proficiency with Bash, I would like to rework the contents of the script and
 make it more portable. I still have alot to learn, so what is here may not be the most efficient
 way to go about things.
@@ -21,9 +21,6 @@ Maybe you will find it useful too!
 
 * DEPENDENCIES
 GNU Core Utils, Bash, Open-SSH, and Git. That's it!
-
-** OPTIONAL
-Cowsay
 
 * HOW TO USE
 
@@ -37,9 +34,14 @@ Either source .profile, or restart your terminal.
 
 #+begin_src bash
 source $HOME/.profile
+
+## Or use the shorthand
+. $HOME/.profile
+
 #+end_src
 
 Make sure to generate some ssh keys to use with Git if you haven't already, then add the path to those keys to your .ssh/config file.
+Don't forget to add them to Github/Gitlab.
 
 #+begin_src bash
 ssh-keygen -f $HOME/.ssh/NAME_OF_KEY
