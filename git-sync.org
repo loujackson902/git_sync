@@ -44,6 +44,7 @@ remotes='origin lab local vps'
 Since my dotfiles directory is tracked using a different method than the rest of my repositories, I have segregated it to it's own blocks.
 #+begin_src bash
 dotfiles="$HOME/git/dotfiles.git"
+config="/usr/bin/git --git-dir=$dotfiles --work-tree=$HOME"
 if
     [ ! -d "$dotfiles" ];
     then
@@ -56,10 +57,10 @@ fi
 Loop "dotf" function until dotfiles repo has synced with all remotes.
 #+begin_src bash
 dotf_sync () {
-             dotf pull origin master
+             $config pull origin master
 for r in $remotes
          do
-             dotf push $r master
+             $config push $r master
 done
 }
 #+end_src
