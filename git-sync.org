@@ -1,6 +1,30 @@
 #+TITLE: Template
 #+AUTHOR: Lou Sanus
-#+DESCRIPTION:
+#+DESCRIPTION: Literate sync script
 #+PROPERTY: header-args :tangle
 #+auto_tangle: t
 #+STARTUP: showeverything
+
+* Table of Contents :toc:
+- [[#about][About]]
+- [[#directories][Directories]]
+  - [[#the-code][The Code]]
+
+* About
+
+This is a script I have been working on for a long time. I have recently decided to rewrite it in org.
+The purpose of this script is to quickly sync git repositories to the cloud as well as practice writing conditionals and loops.
+
+* Directories
+I have created git repositories in the following sub directories within $HOME. Customize as necessary for your Linux System.
+
+- $HOME/git/dotfiles.git (For tracking dotfiles)
+- $HOME/git/uofc (Used for my website)
+- $HOME/documents/org (For notes, and miscellanious org documents)
+- $HOME/.local/bin/ (For general scripts)
+- $HOME/.local/bin/$PROJECT_NAME (For more involved scripts)
+
+  All git directories should contain a .git folder and be treated as the working directory. The exception is the dotfiles.git directory which uses shell aliases to take
+  advantage of a techniques described in a tutorial by [[https://youtu.be/tBoLDpTWVOM][DistroTube]]. A text version can be found [[https://www.atlassian.com/git/tutorials/dotfiles][here]].
+
+** The Code
