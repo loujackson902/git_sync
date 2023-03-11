@@ -53,20 +53,13 @@ if
 fi
 #+end_src
 
-A quick function for executing git bare commands.
-#+begin_src bash
-dotf () {
-          "/usr/bin/git --git-dir=$dotfiles --work-tree=$HOME"
-}
-#+end_src
-
-Loop "dotf" function until dotfiles repo has synced with all remotes and branches.
+Loop "dotf" function until dotfiles repo has synced with all remotes.
 #+begin_src bash
 dotf_sync () {
              dotf pull origin master
 for r in $remotes
          do
-             dotf push r master
+             dotf push $r master
 done
 }
 #+end_src
