@@ -1,4 +1,4 @@
-#+TITLE: Template
+#+TITLE: Git-Sync
 #+AUTHOR: Lou Sanus
 #+DESCRIPTION: Literate sync script
 #+PROPERTY: header-args :tangle
