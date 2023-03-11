@@ -28,3 +28,20 @@ I have created git repositories in the following sub directories within $HOME. C
   advantage of a techniques described in a tutorial by [[https://youtu.be/tBoLDpTWVOM][DistroTube]]. A text version can be found [[https://www.atlassian.com/git/tutorials/dotfiles][here]].
 
 ** The Code
+
+Create variables for target directories.
+Check if git directories are present on the system, create them if not.
+In these tests I am using the "!" operator to check if the expression is false. Then performing actions based on the results.
+
+#+begin_src bash
+
+dotfiles="$HOME/git/dotfiles.git"
+if
+    [ ! -d "$dotfiles" ];
+    then
+        git init --bare $dotfiles
+        else
+            echo "Dotfiles repo present."
+fi
+
+#+end_src
