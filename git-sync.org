@@ -32,6 +32,11 @@ Create variables for target directories.
 Check if git directories are present on the system, create them if not.
 In these tests I am using the "!" operator to check if the expression is false. Then performing actions based on the results.
 
+*** Remotes
+Define the remotes variable to use in loop functions
+#+begin_src bash
+remotes='origin lab local vps'
+#+end_src
 *** Dotfiles
 Since my dotfiles directory is tracked using a different method than the rest of my repositories, I have segregated it to it's own blocks.
 #+begin_src bash
@@ -56,11 +61,11 @@ dotf () {
 
 Loop "dotf" function until dotfiles repo has synced with all remotes and branches.
 #+begin_src bash
-remotes='origin lab local vps'
-
+dotf_sync () {
+             dotf pull origin master
 for r in $remotes
          do
-             dotf pull origin master
              dotf push r master
 done
+}
 #+end_src
