@@ -54,5 +54,5 @@ Make any changes to paths contained within the script to suit your system's conf
 Finally, execute the script.
 
 #+begin_src bash
-git_sync.sh
+git-sync.sh
 #+end_src

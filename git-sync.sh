@@ -37,8 +37,8 @@ fi
 ## Check for git_sync directory in bin folder then set path as a variable.
 if
     [[ -n "$bin" ]]; then
-        git_sync="$bin/git_sync" &&
-                echo "Git_Sync set."
+        git_sync="$bin/git-sync" &&
+                echo "Git-Sync set."
 fi
 
 ## Check for org directory in documents folder then set path as a variable.
