@@ -112,7 +112,7 @@ do
     git -C $m pull origin master;
     git -C $m push origin master;
     git -C $m push lab master;
-    git -C $m push local master;
+    git -C $m push local master
 #   git -C $m push vps master # toggle comment for personal git server
 done
 }
