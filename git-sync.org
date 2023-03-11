@@ -40,7 +40,6 @@ remotes='origin lab local vps'
 *** Dotfiles
 Since my dotfiles directory is tracked using a different method than the rest of my repositories, I have segregated it to it's own blocks.
 #+begin_src bash
-dotf-var () {
 dotfiles="$HOME/git/dotfiles.git"
 if
     [ ! -d "$dotfiles" ];
@@ -49,7 +48,6 @@ if
         else
             echo "Dotfiles repo present."
 fi
-}
 #+end_src
 
 A quick function for executing git bare commands.
