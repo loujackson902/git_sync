@@ -1,7 +1,7 @@
 #+TITLE: Git-Sync
 #+AUTHOR: Lou Sanus
 #+DESCRIPTION: Literate sync script
-#+PROPERTY: header-args :tangle
+#+PROPERTY: header-args :tangle sync-test.sh
 #+auto_tangle: t
 #+STARTUP: showeverything
 
