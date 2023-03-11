@@ -24,7 +24,7 @@ I have created git repositories in the following sub directories within $HOME. C
 - $HOME/.local/bin/ (For general scripts)
 - $HOME/.local/bin/$PROJECT_NAME (For more involved scripts)
 
-  All git directories should contain a .git folder and be treated as the working directory. The exception is the dotfiles.git directory which uses shell aliases to take
+  All git directories should contain a .git folder and be treated as the working directory. The exception is the dotfiles.git directory which uses a unique function to take
   advantage of a techniques described in a tutorial by [[https://youtu.be/tBoLDpTWVOM][DistroTube]]. A text version can be found [[https://www.atlassian.com/git/tutorials/dotfiles][here]].
 
 ** The Code
@@ -33,11 +33,9 @@ Check if git directories are present on the system, create them if not.
 In these tests I am using the "!" operator to check if the expression is false. Then performing actions based on the results.
 
 *** Dotfiles
-Since my dotfiles directory is tracked using a different method than the rest of my repositories, I have segregated it to it's own block.
-
+Since my dotfiles directory is tracked using a different method than the rest of my repositories, I have segregated it to it's own blocks.
 #+begin_src bash
-
-dotf_var () {
+dotf-var () {
 dotfiles="$HOME/git/dotfiles.git"
 if
     [ ! -d "$dotfiles" ];
@@ -47,5 +45,22 @@ if
             echo "Dotfiles repo present."
 fi
 }
+#+end_src
 
+A quick function for executing git bare commands.
+#+begin_src bash
+dotf () {
+          "/usr/bin/git --git-dir=$dotfiles --work-tree=$HOME"
+}
+#+end_src
+
+Loop "dotf" function until dotfiles repo has synced with all remotes and branches.
+#+begin_src bash
+remotes='origin lab local vps'
+
+for r in $remotes
+         do
+             dotf pull origin master
+             dotf push r master
+done
 #+end_src
