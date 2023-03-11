@@ -67,3 +67,11 @@ done
 #+end_src
 
 ** Other Repositories
+Variables and functions in relation to remaining repositories will be defined in the proceeding blocks.
+First, git repositories are defined as variables.
+#+begin_src bash
+www="$HOME/git/uofc" # Website directory.
+org="$HOME/documents/org" # For notes, and miscellanious org documents.
+scripts="$HOME/.local/bin/" # For general scripts.
+git-sync="$HOME/.local/bin/git-sync" # For my git-sync script
+#+end_src

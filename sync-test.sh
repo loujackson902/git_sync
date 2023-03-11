@@ -1,6 +1,7 @@
 remotes='origin lab local vps'
 
 dotfiles="$HOME/git/dotfiles.git"
+config="/usr/bin/git --git-dir=$dotfiles --work-tree=$HOME"
 if
     [ ! -d "$dotfiles" ];
     then
@@ -9,14 +10,15 @@ if
             echo "Dotfiles repo present."
 fi
 
-dotf () {
-          "/usr/bin/git --git-dir=$dotfiles --work-tree=$HOME"
-}
-
 dotf_sync () {
-             dotf pull origin master
+             $config pull origin master
 for r in $remotes
          do
-             dotf push r master
+             $config push $r master
 done
 }
+
+www="$HOME/git/uofc" # Website directory.
+org="$HOME/documents/org" # For notes, and miscellanious org documents.
+scripts="$HOME/.local/bin/" # For general scripts.
+git-sync="$HOME/.local/bin/git-sync" # For my git-sync script
