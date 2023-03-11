@@ -8,7 +8,9 @@
 * Table of Contents :toc:
 - [[#about][About]]
 - [[#directories][Directories]]
-  - [[#the-code][The Code]]
+- [[#the-code][The Code]]
+  - [[#remotes][Remotes]]
+  - [[#dotfiles][Dotfiles]]
 
 * About
 
@@ -27,17 +29,18 @@ I have created git repositories in the following sub directories within $HOME. C
   All git directories should contain a .git folder and be treated as the working directory. The exception is the dotfiles.git directory which uses a unique function to take
   advantage of a techniques described in a tutorial by [[https://youtu.be/tBoLDpTWVOM][DistroTube]]. A text version can be found [[https://www.atlassian.com/git/tutorials/dotfiles][here]].
 
-** The Code
+* The Code
 Create variables for target directories.
 Check if git directories are present on the system, create them if not.
 In these tests I am using the "!" operator to check if the expression is false. Then performing actions based on the results.
 
-*** Remotes
+** Remotes
 Define the remotes variable to use in loop functions
 #+begin_src bash
 remotes='origin lab local vps'
 #+end_src
-*** Dotfiles
+
+** Dotfiles
 Since my dotfiles directory is tracked using a different method than the rest of my repositories, I have segregated it to it's own blocks.
 #+begin_src bash
 dotfiles="$HOME/git/dotfiles.git"
