@@ -55,7 +55,7 @@ if
 fi
 #+end_src
 
-Loop "dotf" function until dotfiles repo has synced with all remotes.
+Loop "$config" command until dotfiles repo has synced with all remotes.
 #+begin_src bash
 dotf_sync () {
              $config pull origin master
