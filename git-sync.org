@@ -11,6 +11,7 @@
 - [[#the-code][The Code]]
   - [[#remotes][Remotes]]
   - [[#dotfiles][Dotfiles]]
+  - [[#other-repositories][Other Repositories]]
 
 * About
 
@@ -64,3 +65,5 @@ for r in $remotes
 done
 }
 #+end_src
+
+** Other Repositories
