@@ -36,7 +36,7 @@ Check if git directories are present on the system, create them if not.
 In these tests I am using the "!" operator to check if the expression is false. Then performing actions based on the results.
 
 ** Remotes
-Define the remotes variable to use in loop functions
+Define the remotes variable to use in loop functions.
 #+begin_src bash
 remotes='origin lab local vps'
 #+end_src
@@ -68,10 +68,21 @@ done
 
 ** Other Repositories
 Variables and functions in relation to remaining repositories will be defined in the proceeding blocks.
-First, git repositories are defined as variables.
+First, git repositories are assigned as variables, and a for loop variable is created containing all
+previous directory variables.
 #+begin_src bash
 www="$HOME/git/uofc" # Website directory.
 org="$HOME/documents/org" # For notes, and miscellanious org documents.
 scripts="$HOME/.local/bin/" # For general scripts.
 git-sync="$HOME/.local/bin/git-sync" # For my git-sync script
+dirs="$www $org $scripts $git-sync"
+#+end_src
+
+Then, define a function to syncronize remaining repositories using a for loop.
+#+begin_src bash
+sync (){
+for d in $( echo $dirs );
+do
+    git -C $d pull origin master;
+}
 #+end_src

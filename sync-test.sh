@@ -22,3 +22,10 @@ www="$HOME/git/uofc" # Website directory.
 org="$HOME/documents/org" # For notes, and miscellanious org documents.
 scripts="$HOME/.local/bin/" # For general scripts.
 git-sync="$HOME/.local/bin/git-sync" # For my git-sync script
+dirs="$www $org $scripts $git-sync"
+
+sync (){
+for d in $( echo $dirs );
+do
+    git -C $d pull origin master;
+}
