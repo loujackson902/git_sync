@@ -1,7 +1,7 @@
 #+TITLE: Git-Sync
 #+AUTHOR: Lou Sanus
 #+DESCRIPTION: Literate sync script
-#+PROPERTY: header-args :tangle sync-test.sh
+#+PROPERTY: header-args :tangle git-sync.sh
 #+auto_tangle: t
 #+STARTUP: showeverything
 
@@ -36,10 +36,19 @@ Check if git directories are present on the system, create them if not.
 In these tests I am using the "!" operator to check if the expression is false. Then performing actions based on the results.
 
 ** Remotes
-Define the remotes variable to use in loop functions.
+Remote repositories include
+ - origin (github)
+ - lab (gitlab)
+ - local (homelab)
+ - vps (private cloud server)
+
+I have commented the local repository since my homelab is offline at the moment.
+Copy and paste commented line into the quotations to enable repository.
 #+begin_src bash
-remotes='origin lab local vps'
+remotes='origin lab vps'
+# local
 #+end_src
+
 
 ** Dotfiles
 Since my dotfiles directory is tracked using a different method than the rest of my repositories, I have segregated it to it's own blocks.
@@ -74,8 +83,8 @@ previous directory variables.
 www="$HOME/git/uofc" # Website directory.
 org="$HOME/documents/org" # For notes, and miscellanious org documents.
 scripts="$HOME/.local/bin/" # For general scripts.
-git-sync="$HOME/.local/bin/git-sync" # For my git-sync script
-dirs="$www $org $scripts $git-sync"
+sync="$HOME/.local/bin/git-sync" # For my git-sync script
+dirs="$www $org $scripts $sync"
 #+end_src
 
 Then, define a function to syncronize remaining repositories using a for loop.

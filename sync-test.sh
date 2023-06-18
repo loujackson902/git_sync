@@ -1,4 +1,5 @@
-remotes='origin lab local vps'
+remotes='origin lab vps'
+# local
 
 dotfiles="$HOME/git/dotfiles.git"
 config="/usr/bin/git --git-dir=$dotfiles --work-tree=$HOME"
@@ -21,8 +22,8 @@ done
 www="$HOME/git/uofc" # Website directory.
 org="$HOME/documents/org" # For notes, and miscellanious org documents.
 scripts="$HOME/.local/bin/" # For general scripts.
-git-sync="$HOME/.local/bin/git-sync" # For my git-sync script
-dirs="$www $org $scripts $git-sync"
+sync="$HOME/.local/bin/git-sync" # For my git-sync script
+dirs="$www $org $scripts $sync"
 
 sync (){
 for d in $( echo $dirs );
