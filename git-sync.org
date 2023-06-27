@@ -1,7 +1,7 @@
 #+TITLE: Git-Sync
 #+AUTHOR: Lou Sanus
 #+DESCRIPTION: Literate sync script
-#+PROPERTY: header-args :tangle git-sync.sh
+#+PROPERTY: header-args :tangle
 #+auto_tangle: t
 #+STARTUP: showeverything
 
@@ -83,15 +83,16 @@ previous directory variables.
 www="$HOME/git/uofc" # Website directory.
 org="$HOME/documents/org" # For notes, and miscellanious org documents.
 scripts="$HOME/.local/bin/" # For general scripts.
-sync="$HOME/.local/bin/git-sync" # For my git-sync script
-dirs="$www $org $scripts $sync"
+gsync="$HOME/.local/bin/git-sync" # For my git-sync script
+dirs="$www $org $scripts $gsync"
 #+end_src
 
 Then, define a function to syncronize remaining repositories using a for loop.
 #+begin_src bash
-sync (){
+sync () {
 for d in $( echo $dirs );
 do
     git -C $d pull origin master;
 }
 #+end_src
+
