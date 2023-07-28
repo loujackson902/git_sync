@@ -83,7 +83,7 @@ gsync="$HOME/.local/bin/git-sync" # For my git-sync script
 dirs="$www $org $scripts $gsync"
 #+end_src
 
-Then, define a function to syncronize remaining repositories using a for loop.
+Then, syncronize remaining repositories using a for loop.
 #+begin_src bash
 for d in $( echo $dirs );
 do
