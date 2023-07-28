@@ -13,6 +13,7 @@ fi
              $config pull origin master
 for r in $remotes
          do
+             $config pull $r master&&
              $config push $r master&
 done
 
