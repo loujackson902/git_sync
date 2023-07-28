@@ -26,3 +26,4 @@ dirs="$www $org $scripts $gsync"
 for d in $( echo $dirs );
 do
     git -C $d pull origin master&
+done

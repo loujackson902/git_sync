@@ -88,4 +88,5 @@ Then, syncronize remaining repositories using a for loop.
 for d in $( echo $dirs );
 do
     git -C $d pull origin master&
+done
 #+end_src
