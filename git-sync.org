@@ -1,7 +1,7 @@
 #+TITLE: Git-Sync
 #+AUTHOR: Lou Sanus
 #+DESCRIPTION: Literate sync script
-#+PROPERTY: header-args :tangle
+#+PROPERTY: header-args :tangle /home/benny/.local/bin/git-sync/git-sync.sh
 #+auto_tangle: t
 #+STARTUP: showeverything
 
@@ -40,13 +40,10 @@ Remote repositories include
  - origin (github)
  - lab (gitlab)
  - local (homelab)
- - vps (private cloud server)
+ - vps (virtual private server)
 
-I have commented the local repository since my homelab is offline at the moment.
-Copy and paste commented line into the quotations to enable repository.
 #+begin_src bash
-remotes='origin lab vps'
-# local
+remotes="origin lab vps"
 #+end_src
 
 
@@ -66,13 +63,11 @@ fi
 
 Loop "$config" command until dotfiles repo has synced with all remotes.
 #+begin_src bash
-dotf_sync () {
              $config pull origin master
 for r in $remotes
          do
-             $config push $r master
+             $config push $r master&
 done
-}
 #+end_src
 
 ** Other Repositories
@@ -89,10 +84,7 @@ dirs="$www $org $scripts $gsync"
 
 Then, define a function to syncronize remaining repositories using a for loop.
 #+begin_src bash
-sync () {
 for d in $( echo $dirs );
 do
-    git -C $d pull origin master;
-}
+    git -C $d pull origin master&
 #+end_src
-
