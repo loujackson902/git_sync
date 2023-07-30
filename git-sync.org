@@ -56,10 +56,11 @@ if
     [ ! -d "$dotfiles" ];
     then
         git init --bare $dotfiles
-        else
-            echo "Dotfiles repo present."
 fi
 #+end_src
+
+#+RESULTS:
+: Dotfiles repo present.
 
 Loop "$config" command until dotfiles repo has synced with all remotes.
 #+begin_src bash
@@ -67,9 +68,11 @@ Loop "$config" command until dotfiles repo has synced with all remotes.
 for r in $remotes
          do
              $config pull $r master&&
-             $config push $r master&
+             $config push $r master
 done
 #+end_src
+
+#+RESULTS:
 
 ** Other Repositories
 Variables and functions in relation to remaining repositories will be defined in the proceeding blocks.
@@ -83,11 +86,15 @@ gsync="$HOME/.local/bin/git-sync" # For my git-sync script
 dirs="$www $org $scripts $gsync"
 #+end_src
 
+#+RESULTS:
+
 Then, syncronize remaining repositories using a for loop.
 #+begin_src bash
 for d in $( echo $dirs );
 do
     git -C $d pull origin master&&
-    git -C $d push origin master&
+    git -C $d push origin master
 done
 #+end_src
+
+#+RESULTS:

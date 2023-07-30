@@ -6,15 +6,13 @@ if
     [ ! -d "$dotfiles" ];
     then
         git init --bare $dotfiles
-        else
-            echo "Dotfiles repo present."
 fi
 
              $config pull origin master
 for r in $remotes
          do
              $config pull $r master&&
-             $config push $r master&
+             $config push $r master
 done
 
 www="$HOME/git/uofc" # Website directory.
@@ -26,5 +24,5 @@ dirs="$www $org $scripts $gsync"
 for d in $( echo $dirs );
 do
     git -C $d pull origin master&&
-    git -C $d push origin master&
+    git -C $d push origin master
 done
