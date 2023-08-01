@@ -1,4 +1,5 @@
-remotes="origin lab vps"
+remotes="origin lab"
+#vps
 
 dotfiles="$HOME/git/dotfiles.git"
 config="/usr/bin/git --git-dir=$dotfiles --work-tree=$HOME"

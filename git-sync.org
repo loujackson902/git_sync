@@ -43,7 +43,8 @@ Remote repositories include
  - vps (virtual private server)
 
 #+begin_src bash
-remotes="origin lab vps"
+remotes="origin lab"
+#vps
 #+end_src
 
 
