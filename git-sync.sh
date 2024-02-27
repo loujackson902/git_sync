@@ -17,7 +17,7 @@ done
 uofc="$HOME/git/uofc" # Website directory.
 decades="$HOME/git/decades" # Website directory.
 org="$HOME/git/org" # For notes, and miscellanious org documents.
-scripts="$HOME/.local/bin/" # For general scripts.
+scripts="$HOME/git/scripts/" # For general scripts.
 gsync="$HOME/git/git_sync" # For my git-sync script
 dirs="$uofc $decades $org $scripts $gsync"
 
