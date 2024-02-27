@@ -1,5 +1,4 @@
-remotes="origin lab"
-#vps
+remotes="origin"
 
 dotfiles="$HOME/git/dotfiles.git"
 config="/usr/bin/git --git-dir=$dotfiles --work-tree=$HOME"
@@ -9,21 +8,21 @@ if
         git init --bare $dotfiles
 fi
 
-             $config pull origin master
 for r in $remotes
          do
              $config pull $r master&&
              $config push $r master
 done
 
-www="$HOME/git/uofc" # Website directory.
-org="$HOME/documents/org" # For notes, and miscellanious org documents.
+uofc="$HOME/git/uofc" # Website directory.
+decades="$HOME/git/decades" # Website directory.
+org="$HOME/git/org" # For notes, and miscellanious org documents.
 scripts="$HOME/.local/bin/" # For general scripts.
-gsync="$HOME/.local/bin/git-sync" # For my git-sync script
-dirs="$www $org $scripts $gsync"
+gsync="$HOME/git/git_sync" # For my git-sync script
+dirs="$uofc $decades $org $scripts $gsync"
 
 for d in $( echo $dirs );
 do
-    git -C $d pull origin master&&
-    git -C $d push origin master
+    git -C $d pull $remotes master&&
+    git -C $d push $remotes master
 done
