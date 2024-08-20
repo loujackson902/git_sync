@@ -6,8 +6,14 @@
 - [[#about][ABOUT]]
 - [[#dependencies][DEPENDENCIES]]
 - [[#how-to-use][HOW TO USE]]
+- [[#clone-the-repo][Clone The Repo]]
+- [[#source-profile][Source Profile]]
+- [[#copy-ssh-config-to-home-folder][Copy SSH Config To $HOME Folder]]
+- [[#generate-ssh-keys][Generate SSH Keys]]
+- [[#final-steps][Final Steps]]
 
 * ABOUT
+
 This is a set of scripts that I have been working on for a while to automate syncronizing my personal
 git repos, and teach myself how to write conditionals, loops, and functions in Bash.
 As I advance in proficiency with Bash, I would like to rework the contents of the script and
@@ -20,39 +26,79 @@ Creating the appropriate files and directories if they are not found on the syst
 Maybe you will find it useful too!
 
 * DEPENDENCIES
+
 GNU Core Utils, Bash, Open-SSH, and Git. That's it!
 
 * HOW TO USE
 
 Begin by cloning the repo into your home directory, then add it to "$PATH".
+I prefer to place scripts in $HOME/.local/bin
+
+* Clone The Repo
 
 #+begin_src bash
-git clone https://github.com/loujackson902/git_sync.git $HOME
-#+end_src
 
-Either source .profile, or restart your terminal.
-
-#+begin_src bash
-source $HOME/.profile
-
-## Or use the shorthand
-. $HOME/.profile
+    git clone https://github.com/loujackson902/git_sync.git $HOME/.local/bin
 
 #+end_src
 
-Make sure to generate some ssh keys to use with Git if you haven't already, then add the path to those keys to your .ssh/config file.
+* Source Profile
+
+Source the appropriate profile for your shell.
+
+.profile
+.bash-profile
+.zprofile
+
+#+begin_src bash
+if
+    [[ -f "$HOME/.profile" ]]
+        then
+            source $HOME/.profile
+                elif
+                    [[ -f "$HOME/.bash-profile" ]]
+                        then
+                            source $HOME/.bash-profile
+                                elif
+                                    [[ -f "$HOME/.zprofile" ]]
+                                        then source $HOME/.zprofile
+fi
+#+end_src
+
+* Copy SSH Config To $HOME Folder
+
+When starting fresh I prefer to copy the contents of /etc/ssh/ssh_config to $HOME/.ssh/config.
+So lets do that real quick.
+
+#+begin_src bash
+
+cp /etc/ssh/ssh_config $HOME/.ssh/config
+
+#+end_src
+
+* Generate SSH Keys
+Make sure to generate some ssh keys to use with Git if you haven't already.
+Then add the path to those keys to your .ssh/config file.
 Don't forget to add them to Github/Gitlab.
+I will name the key 'git' as an example.
+Feel free to modify the name and path as needed for your system.
 
 #+begin_src bash
-ssh-keygen -f $HOME/.ssh/NAME_OF_KEY
 
-echo "IdentityFile $HOME/.ssh/NAME_OF_KEY" >> $HOME/.ssh/config
+    ssh-keygen -f $HOME/.ssh/git
+
+    echo "IdentityFile $HOME/.ssh/$NAME_OF_KEY" >> $HOME/.ssh/config
+
 #+end_src
+
+* Final Steps
 
 Make any changes to paths contained within the script to suit your system's configuration.
 
 Finally, execute the script.
 
 #+begin_src bash
+
 git-sync.sh
+
 #+end_src
