@@ -1,6 +1,6 @@
 #+TITLE: Git-Sync
 #+AUTHOR: Lou Sanus
-#+DESCRIPTION: Literate config for git syncronization tool.
+#+DESCRIPTION: Literate sync script
 #+PROPERTY: header-args :tangle /home/benny/.local/bin/git-sync/git-sync.sh
 #+auto_tangle: t
 #+STARTUP: showeverything
@@ -9,10 +9,9 @@
 - [[#about][About]]
 - [[#directories][Directories]]
 - [[#the-code][The Code]]
-- [[#remotes][Remotes]]
-- [[#dotfiles][Dotfiles]]
-  - [[#fun-with-loops][Fun With Loops]]
-- [[#other-repositories][Other Repositories]]
+  - [[#remotes][Remotes]]
+  - [[#dotfiles][Dotfiles]]
+  - [[#other-repositories][Other Repositories]]
 
 * About
 
@@ -20,43 +19,37 @@ This is a script I have been working on for a long time. I have recently decided
 The purpose of this script is to quickly sync git repositories to the cloud as well as practice writing conditionals and loops.
 
 * Directories
-
 I have created git repositories in the following sub directories within $HOME. Customize as necessary for your Linux System.
 
 - $HOME/git/dotfiles.git (For tracking dotfiles)
 - $HOME/git/uofc (Used for my website)
-- $HOME/git/deficit (Used for deficit)
-- $HOME/git/hold-that-thought (Used for HTT)
 - $HOME/documents/org (For notes, and miscellanious org documents)
 - $HOME/.local/bin/ (For general scripts)
-- $HOME/.local/bin/sync (For www-sycronization)
-- $HOME/.local/bin/git-sync (For sycronizing git repos)
 - $HOME/.local/bin/$PROJECT_NAME (For more involved scripts)
 
   All git directories should contain a .git folder and be treated as the working directory. The exception is the dotfiles.git directory which uses a unique function to take
-  advantage of a techniques described in a video tutorial by [[https://youtu.be/tBoLDpTWVOM][DistroTube]]. A text version can be found [[https://www.atlassian.com/git/tutorials/dotfiles][here]].
+  advantage of a techniques described in a tutorial by [[https://youtu.be/tBoLDpTWVOM][DistroTube]]. A text version can be found [[https://www.atlassian.com/git/tutorials/dotfiles][here]].
 
 * The Code
-
 Create variables for target directories.
-This script assumes the proper directories are present on the system.
+Check if git directories are present on the system, create them if not.
+In these tests I am using the "!" operator to check if the expression is false. Then performing actions based on the results.
 
-* Remotes
-
+** Remotes
 Remote repositories include
  - origin (github)
  - lab (gitlab)
- - gitea (homelab)
+ - local (homelab)
+ - vps (virtual private server)
 
 #+begin_src bash
-remotes="origin lab gitea"
+remotes="origin lab"
+#vps
 #+end_src
 
 
-* Dotfiles
-
-Since my dotfiles repository is tracked using a different method than the remaining repositories
-it has been segregated it to it's own blocks.
+** Dotfiles
+Since my dotfiles directory is tracked using a different method than the rest of my repositories, I have segregated it to it's own blocks.
 #+begin_src bash
 dotfiles="$HOME/git/dotfiles.git"
 config="/usr/bin/git --git-dir=$dotfiles --work-tree=$HOME"
@@ -68,8 +61,7 @@ fi
 #+end_src
 
 #+RESULTS:
-
-** Fun With Loops
+: Dotfiles repo present.
 
 Loop "$config" command until dotfiles repo has synced with all remotes.
 #+begin_src bash
@@ -83,21 +75,16 @@ done
 
 #+RESULTS:
 
-* Other Repositories
-
+** Other Repositories
 Variables and functions in relation to remaining repositories will be defined in the proceeding blocks.
 First, git repositories are assigned as variables, and a for loop variable is created containing all
 previous directory variables.
-
 #+begin_src bash
 www="$HOME/git/uofc" # Website directory.
-def="$HOME/git/deficit" # Deficit directory.
-htt="$HOME/git/hold-that-thought" # HTT directory.
 org="$HOME/documents/org" # For notes, and miscellanious org documents.
-scripts="$HOME/.local/bin" # For general scripts.
+scripts="$HOME/.local/bin/" # For general scripts.
 gsync="$HOME/.local/bin/git-sync" # For my git-sync script
-wsync="$HOME/.local/bin/sync" #For my website sync script
-dirs="$www $org $scripts $gsync $wsync $def $htt $wsync"
+dirs="$www $org $scripts $gsync"
 #+end_src
 
 #+RESULTS:
