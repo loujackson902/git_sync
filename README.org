@@ -44,25 +44,16 @@ I prefer to place scripts in $HOME/.local/bin
 
 * Source Profile
 
-Source the appropriate profile for your shell.
+Replace the variable to source the appropriate profile for your shell.
 
 .profile
 .bash-profile
 .zprofile
 
 #+begin_src bash
-if
-    [[ -f "$HOME/.profile" ]]
-        then
-            source $HOME/.profile
-                elif
-                    [[ -f "$HOME/.bash-profile" ]]
-                        then
-                            source $HOME/.bash-profile
-                                elif
-                                    [[ -f "$HOME/.zprofile" ]]
-                                        then source $HOME/.zprofile
-fi
+
+source $HOME/$PROFILE
+
 #+end_src
 
 * Copy SSH Config To $HOME Folder
