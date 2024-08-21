@@ -9,8 +9,8 @@
 - [[#about][About]]
 - [[#directories][Directories]]
 - [[#the-code][The Code]]
-  - [[#remotes][Remotes]]
-  - [[#dotfiles][Dotfiles]]
+- [[#remotes][Remotes]]
+- [[#dotfiles][Dotfiles]]
   - [[#other-repositories][Other Repositories]]
 
 * About
@@ -19,23 +19,25 @@ This is a script I have been working on for a long time. I have recently decided
 The purpose of this script is to quickly sync git repositories to the cloud as well as practice writing conditionals and loops.
 
 * Directories
+
 I have created git repositories in the following sub directories within $HOME. Customize as necessary for your Linux System.
 
 - $HOME/git/dotfiles.git (For tracking dotfiles)
 - $HOME/git/uofc (Used for my website)
 - $HOME/documents/org (For notes, and miscellanious org documents)
 - $HOME/.local/bin/ (For general scripts)
-- $HOME/.local/bin/$PROJECT_NAME (For more involved scripts)
 
   All git directories should contain a .git folder and be treated as the working directory. The exception is the dotfiles.git directory which uses a unique function to take
   advantage of a techniques described in a tutorial by [[https://youtu.be/tBoLDpTWVOM][DistroTube]]. A text version can be found [[https://www.atlassian.com/git/tutorials/dotfiles][here]].
 
 * The Code
+
 Create variables for target directories.
 Check if git directories are present on the system, create them if not.
 In these tests I am using the "!" operator to check if the expression is false. Then performing actions based on the results.
 
-** Remotes
+* Remotes
+
 Remote repositories include
  - origin (github)
  - lab (gitlab)
@@ -43,14 +45,19 @@ Remote repositories include
  - vps (virtual private server)
 
 #+begin_src bash
+
 remotes="origin lab"
+
 #vps
 #+end_src
 
 
-** Dotfiles
+* Dotfiles
+
 Since my dotfiles directory is tracked using a different method than the rest of my repositories, I have segregated it to it's own blocks.
+
 #+begin_src bash
+
 dotfiles="$HOME/git/dotfiles.git"
 config="/usr/bin/git --git-dir=$dotfiles --work-tree=$HOME"
 if
@@ -58,44 +65,52 @@ if
     then
         git init --bare $dotfiles
 fi
+
 #+end_src
 
-#+RESULTS:
-: Dotfiles repo present.
 
 Loop "$config" command until dotfiles repo has synced with all remotes.
+
 #+begin_src bash
+
              $config pull origin master
 for r in $remotes
          do
              $config pull $r master&&
              $config push $r master
 done
+
 #+end_src
 
-#+RESULTS:
 
 ** Other Repositories
+
 Variables and functions in relation to remaining repositories will be defined in the proceeding blocks.
 First, git repositories are assigned as variables, and a for loop variable is created containing all
 previous directory variables.
+
 #+begin_src bash
+
 www="$HOME/git/uofc" # Website directory.
 org="$HOME/documents/org" # For notes, and miscellanious org documents.
 scripts="$HOME/.local/bin/" # For general scripts.
 gsync="$HOME/.local/bin/git-sync" # For my git-sync script
 dirs="$www $org $scripts $gsync"
+
 #+end_src
 
-#+RESULTS:
 
 Then, syncronize remaining repositories using a for loop.
+
 #+begin_src bash
+
 for d in $( echo $dirs );
 do
     git -C $d pull origin master&&
     git -C $d push origin master
+
 done
+
 #+end_src
 
 #+RESULTS:
