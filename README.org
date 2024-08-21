@@ -87,8 +87,6 @@ Feel free to modify the name and path as needed for your system.
 
     ssh-keygen -f $HOME/.ssh/git
 
-    echo "IdentityFile $HOME/.ssh/$NAME_OF_KEY" >> $HOME/.ssh/config
-
 #+end_src
 
 * Final Steps
